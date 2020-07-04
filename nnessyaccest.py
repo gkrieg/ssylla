@@ -22,15 +22,14 @@ def getestimatedist(f,prefix,returnarray=False,confidences=None):
     boxacc = sum(accs)/len(accs)
 
     #combining the two into a final estimate and a per-residue estimate
-    if pi == True:
-        if prefix == '8state':
-            x = 0.70530552 
-            y = 0.5342837
-            z = -0.20529427223651175
-        else:
-            x = 0.67104363 
-            y = 0.39915731
-            z = -0.05542468172164372
+    if prefix == '8state':
+        x = 0.70530552 
+        y = 0.5342837
+        z = -0.20529427223651175
+    else:
+        x = 0.67104363 
+        y = 0.39915731
+        z = -0.05542468172164372
     acc = conf * x + boxacc * y + z
     accs = [confs[i] * x + accs[i] * y + z for i in range(len(confidences))]
     return acc,accs
@@ -77,5 +76,5 @@ def getnnessyestimate():
     return estimate
 
 if __name__ == '__main__':
-    print(getnnessyestimate())
+    print('estimated accuracy is {:.03f}'.format(getnnessyestimate()))
 

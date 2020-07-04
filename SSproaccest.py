@@ -16,24 +16,6 @@ import numpy as np
 from scipy import stats
 
 
-def getq3us(test,true):
-    if abs(len(test) - len(true)) == 1 and 'L' in test:
-        test = test + 'L'
-    elif abs(len(test) - len(true)) == 1 and 'C' in test:
-        test = test + 'C'
-    if len(test) == len(true):
-        count = 0
-        correct = 0
-        lets = []
-        for i,let in enumerate(test):
-            count += 1
-            lets.append(let)
-            if let == true[i]:
-                correct += 1
-        return correct / count,''.join(lets)
-    else:
-        return -1,''
-
 def clean(a):
     arr = []
     for l in a:
