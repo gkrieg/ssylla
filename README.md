@@ -1,5 +1,7 @@
 # ssylla
 
+Under Construction.
+
 Ssylla is an ensemble protein secondary structure prediction method that combines a template-based tool with a non-template-based tool.
 
 To use Ssylla, you need to following tools:
@@ -10,4 +12,5 @@ The simplest way to use Ssylla is to take the output files from Nnessy and estim
 
 The output is the estimated accuracy of the Nnessy prediction. If this estimated accuracy exceeds 0.8, use the Nnessy prediction. Otherwise, use the prediction from Porter.
 
-The accuracy estimators for each tool included in our paper are also in this repository. Soon, wrapper functions to make them easier to use will be added to this repository.
+A wrapper function will soon be added that will run Nnessy for you and then run Porter if needed and return the hybrid prediction.
+
