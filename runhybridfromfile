@@ -1,0 +1,33 @@
+#!/bin/bash
+
+#Runs Nnessy on the input fasta and compares the accuracy estimate to a threshold.
+#If the estimated accuracy exceeds the threshold, output Nnessy's prediction
+#Otherwise, output the secondarys tructure of the secondary tool
+
+#location of Nnessy executable
+Nnessy=
+
+#$usage is runhybridfromfile <input fasta for Nnessy> <output location for Nnessy> <predicted secondary structure of secondary tool>
+
+numthreads=4
+
+$Nnessy -i $1 -o $2 -n $numthreads
+outseq=${2}/${1}.probs
+python3 nnessyaccest.py ${outseq} ${outseq}_i 3state > nnessyestimate.txt
+python3 nnessyaccest.py ${outseq} ${outseq}_i 8state > nnessy8estimate.txt
+
+threeest=$(tail -n +2 nnessyestimate.txt)
+eightest=$(tail -n +2 nnessy8estimate.txt)
+threshold=0.8
+
+if (( $threeest > $threshold )); then
+    cat $2/${1}.ss > $2/${1}.hybridss
+else
+    cat $3 > $2/${1}.hybridss
+fi
+
+if (( $eightest > $threshold )); then
+    cat $2/${1}.ss8 > $2/${1}.hybridss8
+else
+    cat $3 > $2/${1}.hybridss8
+fi
