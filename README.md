@@ -1,7 +1,5 @@
 # ssylla
 
-Under Construction.
-
 Ssylla is an ensemble protein secondary structure prediction method that combines a template-based tool with a non-template-based tool.
 
 To use Ssylla, you need to following tools:
